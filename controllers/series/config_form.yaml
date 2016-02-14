@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Series
+
+# Model Form Field configuration
+form: $/sitesforchurch/sermonmanager/models/series/fields.yaml
+
+# Model Class name
+modelClass: Sitesforchurch\SermonManager\Models\Series
+
+# Default redirect location
+defaultRedirect: sitesforchurch/sermonmanager/series
+
+# Create page
+create:
+    title: Create Series
+    redirect: sitesforchurch/sermonmanager/series/update/:id
+    redirectClose: sitesforchurch/sermonmanager/series
+
+# Update page
+update:
+    title: Edit Series
+    redirect: sitesforchurch/sermonmanager/series
+    redirectClose: sitesforchurch/sermonmanager/series
+
+# Preview page
+preview:
+    title: Preview Series

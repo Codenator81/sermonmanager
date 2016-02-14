@@ -1,0 +1,6 @@
+1.0.1: First version of sermonManager
+1.0.2:
+       - Setup Database Structure
+       - create_series_table.php
+       - create_sermons_table.php
+       - create_speakers_table.php

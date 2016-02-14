@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Speaker
+
+# Model Form Field configuration
+form: $/sitesforchurch/sermonmanager/models/speaker/fields.yaml
+
+# Model Class name
+modelClass: Sitesforchurch\SermonManager\Models\Speaker
+
+# Default redirect location
+defaultRedirect: sitesforchurch/sermonmanager/speakers
+
+# Create page
+create:
+    title: Create Speaker
+    redirect: sitesforchurch/sermonmanager/speakers/update/:id
+    redirectClose: sitesforchurch/sermonmanager/speakers
+
+# Update page
+update:
+    title: Edit Speaker
+    redirect: sitesforchurch/sermonmanager/speakers
+    redirectClose: sitesforchurch/sermonmanager/speakers
+
+# Preview page
+preview:
+    title: Preview Speaker

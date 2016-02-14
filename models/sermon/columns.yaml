@@ -1,0 +1,25 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    title:
+        label: Sermon Title
+        searchable: true
+    slug:
+        label: Slug
+        searchable: true
+    date_preached:
+        label: Date Preached
+        searchable: true
+    text:
+        label: Sermon Text
+        searchable: true
+    speaker:
+        label: Preacher
+        relation: speaker
+        select: name
+    series:
+        label: Series
+        relation: series
+        select: title

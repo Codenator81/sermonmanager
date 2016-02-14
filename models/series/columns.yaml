@@ -1,0 +1,17 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    title:
+        label: Series Title
+        searchable: true
+    slug:
+        label: Slug
+    description:
+        label: Series Description
+        searchable: true
+    sermons:
+        label: Sermons
+        relation: sermons
+        select: title

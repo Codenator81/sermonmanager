@@ -1,0 +1,91 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    main_sermon_section:
+        label: Add A Sermon
+        comment: Everything in this section is required
+        type: section
+    title:
+        label: Sermon Title
+        description: The title of the sermon
+        required: true
+        span: left
+    slug:
+        label: Slug
+        description: URL for the sermon page - no special characters or spaces
+        preset:
+            field: title
+            type: slug
+        required: true
+        span: right
+    speaker:
+        label: Preacher
+        description: Who preached this sermon
+        type: relation
+        required: true
+    date_preached:
+        label: Date Preached
+        description: When was the sermon preached
+        type: datepicker
+        mode: date
+        required: true
+        span: left
+    text:
+        label: Sermon Text
+        description: The passage of scripture the sermon is based on - i.e. John 3:16
+        required: true
+        span: left
+    service:
+        label: Service
+        description: What type of service was it
+        type: radio
+        options:
+            sunday_morning: Sunday Morning
+            sunday_evening: Sunday Evening
+            midweek_service: Mid Week Service
+            special_meeting: Special Meeting
+        required: true
+        span: right
+    audio:
+            label: Upload or Choose MP3 Audio File
+            type: mediafinder
+            required: true
+            tab: media
+tabs:
+    fields:
+        optional_section:
+            label: Optional:
+            comment: Everything in this tab is optional.
+            tab: Optional
+            type: section
+        series:
+            label: Sermon Series 
+            type: relation
+            nameFrom: title
+            tab: Optional
+        handout:
+            label: Upload or Choose Sermon Handout File
+            type: mediafinder
+            tab: Optional
+        slides:
+            label: Upload or Choose  Sermon Slides File
+            type: mediafinder
+            tab: Optional
+        description:
+            label: Give the Sermon A Brief Description
+            type: textarea
+            size: small
+            tab: Optional
+        help_section:
+            label: Need some help - check out these resources:
+            tab: Help
+            type: section
+        help_hint:
+            label: Adding Sermons
+            tab: Help
+            type: hint
+            path: $/sitesforchurch/sermonmanager/models/sermon/_sermon_help.htm
+
+

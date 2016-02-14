@@ -1,0 +1,52 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    main_series_section:
+        label: Add A Series
+        comment: Everything in this section is required
+        type: section
+    title:
+        label: Series Title
+        description: The title of the Series
+        required: true
+        span: left
+    slug:
+        label: Slug
+        description: URL for the Series page - no special characters or spaces
+        preset:
+            field: title
+            type: slug
+        required: true
+        span: right
+    artwork:
+        label: Attach Series Artwork
+        type: fileupload
+        required: true
+        mode: image
+        imageHeight: 563
+        imageWidth: 1000
+    artwork_hint:
+        label: Create series images
+        type: hint
+        path: $/sitesforchurch/sermonmanager/models/series/_series_artwork_help.htm
+    description:
+        label: description
+        type: textarea
+        size: large
+        required: true
+    
+tabs:
+    fields:
+        help_section:
+            label: Need some help - check out these resources:
+            tab: Help
+            type: section
+        help_hint:
+            label: Adding A Series Help
+            tab: Help
+            type: hint
+            path: $/sitesforchurch/sermonmanager/models/series/_series_help.htm
+
+

@@ -1,0 +1,26 @@
+{% for sermon in __SELF__.sermons %}
+{% set series = sermon.series %}
+{% set speaker = sermon.speaker %}
+
+<h4>{{sermon.title}}</h4>
+<p>{{sermon.text}}</p>
+{% if sermon.description %}
+<p>{{sermon.description}}</p>
+{% else %}
+<p>No description given</p>
+{% endif %}
+<p>{{sermon.slides}}</p>
+<p>{{sermon.handout}}</p>
+<p>{{sermon.date_preached}}</p>
+
+<p>{{speaker.name}}</p>
+{% if speaker.thumbnail %}
+<img src="{{speaker.thumbnail.path | app }}" alt="">
+{% endif %}
+{% if series %}
+<p>{{series.title}}</p>
+<img src="{{series.artwork.path | app}}" alt="{{series.title}}">
+<p>{{series.description}}</p>
+{% endif %}
+
+{% endfor %}

@@ -1,0 +1,70 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    main_speaker_section:
+        label: Add A speaker
+        comment: Everything in this section is required
+        type: section
+    name:
+        label: Speaker Name
+        description: The name of the speaker
+        required: true
+        span: left
+    slug:
+        label: Slug
+        description: URL for the speaker page - no special characters or spaces
+        preset:
+            field: name
+            type: slug
+        required: true
+        span: right
+    title:
+        label: Speaker's Title or Position
+        type: radio
+        options:
+            pastor: Pastor
+            assistan_pastor: Assistant Pastor
+            staff_member: Church Staff Member
+            lay_preacher: Lay Preacher
+            evangelist: Evangelist
+            missionary: Missionary
+        required: true
+        span: right
+    thumbnail_speaker_section:
+        label: Add The Speakers Thumbnail 
+        comment: This is not required
+        type: section
+    thumbnail:
+        label: Attach square speaker thumbnail to use as an avatar
+        type: fileupload
+        mode: image
+        imageHeight: 250
+        imageWidth: 250
+    artwork_hint:
+        label: Create speaker images
+        type: hint
+        path: $/sitesforchurch/sermonmanager/models/speaker/_speaker_artwork_help.htm
+    bio_speaker_section:
+        label: Add a bio or some more info about this preacher 
+        comment: This is not required
+        type: section
+    bio:
+        label: bio
+        type: textarea
+        size: large
+        required: true
+tabs:
+    fields:
+        help_section:
+            label: Need some help - check out these resources:
+            tab: Help
+            type: section
+        help_hint:
+            label: Adding A speaker Help
+            tab: Help
+            type: hint
+            path: $/sitesforchurch/sermonmanager/models/speaker/_speaker_help.htm
+
+
