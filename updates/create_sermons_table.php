@@ -15,10 +15,8 @@ class CreateSermonsTable extends Migration
             $table->string('title');
             $table->string('slug')->index();
             $table->string('text')->nullable();
-            $table->string('speaker')->nullable();
             $table->integer('speaker_id')->unsigned()->nullable()->index();
             $table->integer('series_id')->unsigned()->nullable()->index();
-            $table->string('series')->nullable();
             $table->string('service')->nullable();
             $table->text('description')->nullable();
             $table->string('audio')->nullable();

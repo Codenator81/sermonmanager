@@ -15,7 +15,6 @@ class CreateSpeakersTable extends Migration
             $table->string('name');
             $table->string('slug')->index();
             $table->string('title')->nullable();
-            $table->string('sermons')->nullable();
             $table->text('bio')->nullable();
             $table->string('thumbnail')->nullable();
             $table->string('email')->nullable();

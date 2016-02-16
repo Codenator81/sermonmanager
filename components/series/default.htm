@@ -1,3 +1,7 @@
-<p>This is the default markup for component series</p>
+{% set series = __SELF__.series %}
 
-<small>You can delete this file if you want</small>
+{# Series image #}
+<img src="{{ series.artwork.path }}" alt="">
+<h3>{{ series.title }}</h3>
+
+{{ series.description }}

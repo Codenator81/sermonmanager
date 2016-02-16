@@ -19,36 +19,31 @@ class SermonList extends ComponentBase
      * The series the sermon belongs to to display.
      * @var string
      */
-    
     public $series;
     
     /**
      * The speaker the sermon belongs to.
      * @var string
      */
-    
     public $speaker;
     
     /**
      * Parameter to use for the page number.
      * @var string
      */
-    
     public $pageParam;
     
     /**
      * Message to display when there are no sermons..
      * @var string
      */
-    
     public $noPostsMessage;
     
     /**
      * Reference to the page name for linking to individual sermons.
      * @var string
      */
-     
-    public $sermonsPage;
+    public $sermonPage;
     
     /**
      * Reference to the page name for linking to series.
@@ -73,13 +68,6 @@ class SermonList extends ComponentBase
     public function defineProperties()
     {
         return [
-            'itemsPerPage' => [
-                'title'             => 'Items Per Page',
-                'type'              => 'string',
-                'validationPattern' => '^[0-9]+$',
-                'validationMessage' => 'Must be a number greater than zero.',
-                'default'           => '6',
-            ],
             'order' => [
                 'title' => 'Order',
                 'placeholder' => 'asc or desc',
@@ -109,7 +97,7 @@ class SermonList extends ComponentBase
                 'title'        => 'No Sermons Message',
                 'description'  => 'What to display when no sermons are available',
                 'type'         => 'string',
-                'default'      => 'No posts found',
+                'default'      => 'No sermons found',
                 'showExternalParam' => false
             ],
             'sortOrder' => [
@@ -122,31 +110,89 @@ class SermonList extends ComponentBase
                 'title'       => 'Series Page',
                 'description' => 'what page to send the series links to.',
                 'type'        => 'dropdown',
-                'default'     => 'blog/category',
+                'default'     => 'series',
                 'group'       => 'Links',
             ],
             'sermonPage' => [
                 'title'       => 'Sermon Page',
                 'description' => 'what page to send the sermon links to',
                 'type'        => 'dropdown',
-                'default'     => 'blog/post',
+                'default'     => 'sermon',
                 'group'       => 'Links',
             ],
-            'speakerPage' => [
-                'title'       => 'Speaker Page',
-                'description' => 'what page to send the speaker links to',
-                'type'        => 'dropdown',
-                'default'     => 'blog/post',
-                'group'       => 'Links',
-            ]
-            ];
+//            'speakerPage' => [
+//                'title'       => 'Speaker Page',
+//                'description' => 'what page to send the speaker links to',
+//                'type'        => 'dropdown',
+//                'default'     => 'blog/post',
+//                'group'       => 'Links',
+//            ]
+        ];
+    }
+
+    public function getSeriesPageOptions()
+    {
+        return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
+    }
+
+    public function getSermonPageOptions()
+    {
+        return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
+    }
+
+    public function getSortOrderOptions()
+    {
+        return Sermon::$allowedSortingOptions;
     }
     
-
-    
-public function onRun()
+    public function onRun()
     {
-      $sermonresults = Sermon::with('speaker.thumbnail','series.title')->get();
-      $this->sermons = $sermonresults;
+        $this->prepareVars();
+        $this->sermons = $this->page['sermons'] = $this->listSermons();
+        /*
+         * If the page number is not valid, redirect
+         */
+        if ($pageNumberParam = $this->paramName('pageNumber')) {
+            $currentPage = $this->property('pageNumber');
+
+            if ($currentPage > ($lastPage = $this->sermons->lastPage()) && $currentPage > 1)
+                return Redirect::to($this->currentPageUrl([$pageNumberParam => $lastPage]));
+        }
+    }
+
+    protected function prepareVars()
+    {
+        $this->pageParam = $this->page['pageParam'] = $this->paramName('pageNumber');
+        $this->noPostsMessage = $this->page['noPostsMessage'] = $this->property('noPostsMessage');
+
+        /*
+         * Sermon links
+         */
+        $this->sermonPage = $this->page['sermonPage'] = $this->property('sermonPage');
+        $this->seriesPage = $this->page['seriesPage'] = $this->property('seriesPage');
+    }
+
+    protected function listSermons()
+    {
+        /*
+         * List all the sermons, eager load their series
+         */
+        $sermons = Sermon::with('series', 'speaker')->listFrontEnd([
+            'page'          => $this->property('pageNumber'),
+            'sort'          => $this->property('sortOrder'),
+            'perPage'       => $this->property('sermonsPerPage'),
+            'seriesFilter'  => $this->property('seriesFilter'),
+        ]);
+
+        /*
+         * Add a "url" helper attribute for linking to each post and category
+         */
+        $sermons->each(function($sermon) {
+
+            $sermon->setUrl($this->sermonPage, $this->controller);
+            $sermon->series->setUrl($this->seriesPage, $this->controller);
+        });
+
+        return $sermons;
     }
 }
