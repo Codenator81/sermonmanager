@@ -1,3 +1,32 @@
-<p>This is the default markup for component sermon</p>
+{% set sermon = __SELF__.sermon %}
+{% set artwork = sermon.series.artwork.path %}
+{% set speaker = sermon.speaker %}
 
-<small>You can delete this file if you want</small>
+
+{# Series image #}
+{% if artwork %}
+<img src="{{ artwork }}">
+{% endif %}
+
+<h3>{{ sermon.title }}</h3>
+<p>
+    {{ sermon.date_preached }}
+</p>
+
+<p>
+    {{ speaker.title }} {{ speaker.name }}
+</p>
+
+<p>
+    {{ sermon.service }}
+</p>
+{% if sermon.audio %}
+<p>
+    {{ sermon.audio|media }}
+</p>
+{% endif %}
+
+<p>
+    {{ sermon.text }}
+</p>
+

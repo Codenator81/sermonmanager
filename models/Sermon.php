@@ -109,7 +109,9 @@ class Sermon extends Model
         }
 
         if ($seriesFilter) {
-            $query->with('series.title', $seriesFilter);
+            $query->whereHas('series', function ($query) {
+                $query->where('title', 'like', '%One%');
+            });
         }
         /*
          * Sorting
