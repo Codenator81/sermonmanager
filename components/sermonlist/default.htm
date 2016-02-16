@@ -1,26 +1,48 @@
-{% for sermon in __SELF__.sermons %}
+{% set sermons = __SELF__.sermons %}
+
+{% for sermon in sermons %}
 {% set series = sermon.series %}
 {% set speaker = sermon.speaker %}
+    <h4><a href="{{ sermon.url }}">{{ sermon.title }}</a></h4>
+    <p>{{sermon.text}}</p>
+    {% if sermon.description %}
+        <p>{{sermon.description}}</p>
+    {% else %}
+        <p>No description given</p>
+    {% endif %}
+    {# to get content from media manager need add filter |media #}
+    <p>{{ sermon.slides|media }}</p>
+    <p><{{ sermon.handout|media }}</p>
+    <p>{{ sermon.date_preached }}</p>
 
-<h4>{{sermon.title}}</h4>
-<p>{{sermon.text}}</p>
-{% if sermon.description %}
-<p>{{sermon.description}}</p>
+    <p>{{speaker.name}}</p>
+    {% if speaker.thumbnail %}
+    <img src="{{speaker.thumbnail.path | app }}" alt="">
+    {% endif %}
+    {% if series %}
+    <p><a href="{{ series.url }}">{{ series.title }}</a></p>
+    <img src="{{series.artwork.path | app}}" alt="{{series.title}}">
+    <p>{{series.description}}</p>
+    {% endif %}
+
 {% else %}
-<p>No description given</p>
-{% endif %}
-<p>{{sermon.slides}}</p>
-<p>{{sermon.handout}}</p>
-<p>{{sermon.date_preached}}</p>
-
-<p>{{speaker.name}}</p>
-{% if speaker.thumbnail %}
-<img src="{{speaker.thumbnail.path | app }}" alt="">
-{% endif %}
-{% if series %}
-<p>{{series.title}}</p>
-<img src="{{series.artwork.path | app}}" alt="{{series.title}}">
-<p>{{series.description}}</p>
-{% endif %}
-
+    <p class="no-data">{{ noPostsMessage }}</p>
 {% endfor %}
+
+{% if sermons.lastPage > 1 %}
+    <ul class="pagination">
+        {% if sermons.currentPage > 1 %}
+            <li><a href="{{ this.page.baseFileName|page({ (pageParam): (sermons.currentPage-1) }) }}">&larr; Prev</a></li>
+        {% endif %}
+
+        {% for page in 1..sermons.lastPage %}
+            <li class="{{ sermons.currentPage == page ? 'active' : null }}">
+                <a href="{{ this.page.baseFileName|page({ (pageParam): page }) }}">{{ page }}</a>
+            </li>
+        {% endfor %}
+
+        {% if sermons.lastPage > sermons.currentPage %}
+            <li><a href="{{ this.page.baseFileName|page({ (pageParam): (sermons.currentPage+1) }) }}">Next &rarr;</a></li>
+        {% endif %}
+    </ul>
+{% endif %}

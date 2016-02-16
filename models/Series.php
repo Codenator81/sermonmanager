@@ -27,10 +27,25 @@ class Series extends Model
      * @var array Relations
      */
     public $hasMany = [
-    'sermons' => 'Sitesforchurch\SermonManager\Models\Sermon'
+        'sermons' => 'Sitesforchurch\SermonManager\Models\Sermon'
     ];
     public $attachOne = [
-    'artwork' => 'System\Models\File'
+        'artwork' => 'System\Models\File'
     ];
+
+    /**
+     * Sets the "url" attribute with a URL to this object
+     * @param string $pageName
+     * @param Cms\Classes\Controller $controller
+     */
+    public function setUrl($pageName, $controller)
+    {
+        $params = [
+            'id' => $this->id,
+            'slug' => $this->slug,
+        ];
+
+        return $this->url = $controller->pageUrl($pageName, $params);
+    }
 
 }

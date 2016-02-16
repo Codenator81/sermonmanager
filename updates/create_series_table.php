@@ -16,7 +16,6 @@ class CreateSeriesTable extends Migration
             $table->string('slug')->index();
             $table->string('artwork')->nullable();
             $table->text('description')->nullable();
-            $table->string('sermons')->nullable();
             $table->timestamps();
         });
     }
