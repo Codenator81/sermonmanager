@@ -178,9 +178,10 @@ class SermonList extends ComponentBase
          * List all the sermons, eager load their series
          */
         $sermons = Sermon::with('series', 'speaker')->listFrontEnd([
-            'page'       => $this->property('pageNumber'),
-            'sort'       => $this->property('sortOrder'),
-            'perPage'    => $this->property('sermonsPerPage')
+            'page'          => $this->property('pageNumber'),
+            'sort'          => $this->property('sortOrder'),
+            'perPage'       => $this->property('sermonsPerPage'),
+            'seriesFilter'  => $this->property('seriesFilter'),
         ]);
 
         /*

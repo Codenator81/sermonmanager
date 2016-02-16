@@ -101,7 +101,6 @@ class Sermon extends Model
             'page'       => 1,
             'perPage'    => 30,
             'sort'       => 'created_at',
-            'search'     => '',
             'published'  => true
         ], $options));
 
@@ -109,6 +108,9 @@ class Sermon extends Model
             $query->isPublished();
         }
 
+        if ($seriesFilter) {
+            $query->with('series.title', $seriesFilter);
+        }
         /*
          * Sorting
          */
