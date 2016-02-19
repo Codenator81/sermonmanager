@@ -19,7 +19,7 @@ class Plugin extends PluginBase
         return [
             'name'        => 'Sermon Manager',
             'description' => 'Add and categorize your sermons',
-            'author'      => 'sitesforchurch',
+            'author'      => 'SitesForChurch',
             'icon'        => 'icon-microphone'
         ];
     }
