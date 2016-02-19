@@ -3,7 +3,7 @@
        - Setup Database Structure
        - create_series_table.php
        - create_sermons_table.php
-       - create_speakers_table.
+       - create_speakers_table.php
 1.0.3:
        - Fix bug menu in plugin not work
 1.0.4:
