@@ -1,7 +1,7 @@
-<?php namespace Sitesforchurch\SermonManager\Models;
+<?php namespace SitesForChurch\SermonManager\Models;
 
 use Model;
-use Sitesforchurch\SermonManager\Controllers\Series;
+use SitesForChurch\SermonManager\Controllers\Series;
 
 /**
  * sermon Model
@@ -46,8 +46,8 @@ class Sermon extends Model
     public $hasOne = [];
     public $hasMany = [];
     public $belongsTo = [
-        'speaker' => ['Sitesforchurch\SermonManager\Models\Speaker'],
-        'series'  => ['Sitesforchurch\SermonManager\Models\Series'],
+        'speaker' => ['SitesForChurch\SermonManager\Models\Speaker'],
+        'series'  => ['SitesForChurch\SermonManager\Models\Series'],
     ];
     public $belongsToMany = [];
     public $morphTo = [];

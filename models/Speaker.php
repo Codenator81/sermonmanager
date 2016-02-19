@@ -1,4 +1,4 @@
-<?php namespace Sitesforchurch\SermonManager\Models;
+<?php namespace SitesForChurch\SermonManager\Models;
 
 use Model;
 
@@ -28,7 +28,7 @@ class Speaker extends Model
      */
     public $hasOne = [];
     public $hasMany = [
-    'sermons' => 'Sitesforchurch\SermonManager\Models\Sermon'
+    'sermons' => 'SitesForChurch\SermonManager\Models\Sermon'
     ];
     public $belongsTo = [];
     public $belongsToMany = [];

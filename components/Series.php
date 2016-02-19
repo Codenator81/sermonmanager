@@ -1,11 +1,11 @@
-<?php namespace Sitesforchurch\Sermonmanager\Components;
+<?php namespace SitesForChurch\Sermonmanager\Components;
 
 use Cms\Classes\ComponentBase;
 
 class Series extends ComponentBase
 {
     /**
-     * @var \Sitesforchurch\SermonManager\Models\Series The sermon model used for display.
+     * @var \SitesForChurch\SermonManager\Models\Series The sermon model used for display.
      */
     public $series;
 
@@ -36,7 +36,7 @@ class Series extends ComponentBase
     protected function loadSeries()
     {
         $slug = $this->property('slug');
-        $series = \Sitesforchurch\SermonManager\Models\Series::where('slug', $slug)->first();
+        $series = \SitesForChurch\SermonManager\Models\Series::where('slug', $slug)->first();
 
         return $series;
     }

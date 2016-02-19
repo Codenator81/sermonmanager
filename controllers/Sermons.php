@@ -1,4 +1,4 @@
-<?php namespace Sitesforchurch\SermonManager\Controllers;
+<?php namespace SitesForChurch\SermonManager\Controllers;
 
 use BackendMenu;
 use Backend\Classes\Controller;

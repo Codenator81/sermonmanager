@@ -1,4 +1,4 @@
-<?php namespace Sitesforchurch\SermonManager\Updates;
+<?php namespace SitesForChurch\SermonManager\Updates;
 
 use Schema;
 use October\Rain\Database\Updates\Migration;

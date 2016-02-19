@@ -1,4 +1,4 @@
-<?php namespace Sitesforchurch\SermonManager;
+<?php namespace SitesForChurch\SermonManager;
 
 use Backend;
 use System\Classes\PluginBase;
@@ -33,9 +33,9 @@ class Plugin extends PluginBase
     {
 
         return [
-            'Sitesforchurch\SermonManager\Components\SermonList' => 'sermonList',
-            'Sitesforchurch\SermonManager\Components\Sermon' => 'sermon',
-            'Sitesforchurch\SermonManager\Components\Series' => 'series'
+            'SitesForChurch\SermonManager\Components\SermonList' => 'sermonList',
+            'SitesForChurch\SermonManager\Components\Sermon' => 'sermon',
+            'SitesForChurch\SermonManager\Components\Series' => 'series'
         ];
     }
 

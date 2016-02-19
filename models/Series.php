@@ -1,4 +1,4 @@
-<?php namespace Sitesforchurch\SermonManager\Models;
+<?php namespace SitesForChurch\SermonManager\Models;
 
 use Model;
 
@@ -27,7 +27,7 @@ class Series extends Model
      * @var array Relations
      */
     public $hasMany = [
-        'sermons' => 'Sitesforchurch\SermonManager\Models\Sermon'
+        'sermons' => 'SitesForChurch\SermonManager\Models\Sermon'
     ];
     public $attachOne = [
         'artwork' => 'System\Models\File'

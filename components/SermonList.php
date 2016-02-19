@@ -1,9 +1,9 @@
-<?php namespace Sitesforchurch\Sermonmanager\Components;
+<?php namespace SitesForChurch\Sermonmanager\Components;
 
 use Redirect;
 use Cms\Classes\Page;
 use Cms\Classes\ComponentBase;
-use Sitesforchurch\SermonManager\Models\Sermon;
+use SitesForChurch\SermonManager\Models\Sermon;
 
 
 class SermonList extends ComponentBase
