@@ -1,11 +1,15 @@
 <?php namespace Sitesforchurch\Sermonmanager\Components;
 
 use Cms\Classes\ComponentBase;
-use Sitesforchurch\SermonManager\Models\Sermon as singleSermon;
+use Sitesforchurch\SermonManager\Models\Sermon as OneSermon;
 
 
 class Sermon extends ComponentBase
 {
+    /**
+     * @var OneSermon The sermon model used for display.
+     */
+    public $sermon;
 
     public function componentDetails()
     {
@@ -17,10 +21,25 @@ class Sermon extends ComponentBase
 
     public function defineProperties()
     {
-        return [];
+        return [
+          'slug' => [
+            'title'       => 'Sermon slug',
+            'description' => 'Look up the sermon using the supplied slug value.',
+            'default'     => '{{ :slug }}',
+            'type'        => 'string'
+          ]
+        ];
     }
     public function onRun()
     {
+        $this->sermon = $this->page['sermon'] = $this->loadSermon();
+    }
 
+    protected function loadSermon()
+    {
+        $slug = $this->property('slug');
+        $sermon = OneSermon::isPublished()->where('slug', $slug)->first();
+
+        return $sermon;
     }
 }

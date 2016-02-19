@@ -4,6 +4,10 @@ use Cms\Classes\ComponentBase;
 
 class Series extends ComponentBase
 {
+    /**
+     * @var \Sitesforchurch\SermonManager\Models\Series The sermon model used for display.
+     */
+    public $series;
 
     public function componentDetails()
     {
@@ -15,7 +19,26 @@ class Series extends ComponentBase
 
     public function defineProperties()
     {
-        return [];
+        return [
+          'slug' => [
+            'title'       => 'Series slug',
+            'description' => 'Look up the series using the supplied slug value.',
+            'default'     => '{{ :slug }}',
+            'type'        => 'string'
+          ]
+        ];
+    }
+    public function onRun()
+    {
+        $this->series = $this->page['series'] = $this->loadSeries();
+    }
+
+    protected function loadSeries()
+    {
+        $slug = $this->property('slug');
+        $series = \Sitesforchurch\SermonManager\Models\Series::where('slug', $slug)->first();
+
+        return $series;
     }
 
 }
