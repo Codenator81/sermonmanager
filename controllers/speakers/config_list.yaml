@@ -1,44 +1,13 @@
-# ===================================
-#  List Behavior Config
-# ===================================
-
-# Model List Column configuration
+title: 'Manage Speakers'
+modelClass: SitesForChurch\SermonManager\Models\Speaker
 list: $/sitesforchurch/sermonmanager/models/speaker/columns.yaml
-
-# Model Class name
-modelClass: Sitesforchurch\SermonManager\Models\Speaker
-
-# List Title
-title: Manage Speakers
-
-# Link URL for each record
-recordUrl: sitesforchurch/sermonmanager/speakers/update/:id
-
-# Message to display if the list is empty
-noRecordsMessage: backend::lang.list.no_records
-
-# Records to display per page
+recordUrl: 'sitesforchurch/sermonmanager/speakers/update/:id'
+noRecordsMessage: 'backend::lang.list.no_records'
 recordsPerPage: 20
-
-# Displays the list column set up button
 showSetup: true
-
-# Displays the sorting link on each column
+showCheckboxes: 1
 showSorting: true
-
-# Default sorting column
-# defaultSort:
-#     column: created_at
-#     direction: desc
-
-# Display checkboxes next to each record
-# showCheckboxes: true
-
-# Toolbar widget configuration
 toolbar:
-    # Partial for toolbar buttons
     buttons: list_toolbar
-
-    # Search widget configuration
     search:
-        prompt: backend::lang.list.search_prompt
+        prompt: 'backend::lang.list.search_prompt'

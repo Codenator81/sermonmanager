@@ -1,31 +1,14 @@
-# ===================================
-#  Form Behavior Config
-# ===================================
-
-# Record name
 name: Sermon
-
-# Model Form Field configuration
 form: $/sitesforchurch/sermonmanager/models/sermon/fields.yaml
-
-# Model Class name
 modelClass: Sitesforchurch\SermonManager\Models\Sermon
-
-# Default redirect location
 defaultRedirect: sitesforchurch/sermonmanager/sermons
-
-# Create page
 create:
-    title: Create Sermon
-    redirect: sitesforchurch/sermonmanager/sermons/update/:id
+    title: 'Create Sermon'
+    redirect: 'sitesforchurch/sermonmanager/sermons/update/:id'
     redirectClose: sitesforchurch/sermonmanager/sermons
-
-# Update page
 update:
-    title: Edit Sermon
+    title: 'Edit Sermon'
     redirect: sitesforchurch/sermonmanager/sermons
     redirectClose: sitesforchurch/sermonmanager/sermons
-
-# Preview page
 preview:
-    title: Preview Sermon
+    title: 'Preview Sermon'

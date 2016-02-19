@@ -2,6 +2,8 @@
 
 use BackendMenu;
 use Backend\Classes\Controller;
+use Flash;
+use SitesForChurch\SermonManager\Models\Speaker as SpeakerModel;
 
 /**
  * Speakers Back-end Controller
@@ -21,5 +23,22 @@ class Speakers extends Controller
         parent::__construct();
 
         BackendMenu::setContext('SitesForChurch.SermonManager', 'sermonmanager', 'speakers');
+    }
+
+    public function index_onDelete()
+    {
+        if (($checkedIds = post('checked')) && is_array($checkedIds) && count($checkedIds)) {
+
+            foreach ($checkedIds as $speakerId) {
+                if ((!$speaker = SpeakerModel::find($speakerId)))
+                    continue;
+
+                $speaker->delete();
+            }
+
+            Flash::success('Successfully deleted those speakers.');
+        }
+
+        return $this->listRefresh();
     }
 }

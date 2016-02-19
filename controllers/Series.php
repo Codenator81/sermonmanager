@@ -2,6 +2,8 @@
 
 use BackendMenu;
 use Backend\Classes\Controller;
+use Flash;
+use SitesForChurch\SermonManager\Models\Series as SeriesModel;
 
 /**
  * Series Back-end Controller
@@ -21,5 +23,22 @@ class Series extends Controller
         parent::__construct();
 
         BackendMenu::setContext('SitesForChurch.SermonManager', 'sermonmanager', 'series');
+    }
+
+    public function index_onDelete()
+    {
+        if (($checkedIds = post('checked')) && is_array($checkedIds) && count($checkedIds)) {
+
+            foreach ($checkedIds as $seriesId) {
+                if ((!$series = SeriesModel::find($seriesId)))
+                    continue;
+
+                $series->delete();
+            }
+
+            Flash::success('Successfully deleted those series.');
+        }
+
+        return $this->listRefresh();
     }
 }
