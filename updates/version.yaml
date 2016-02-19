@@ -5,6 +5,6 @@
        - create_sermons_table.php
        - create_speakers_table.php
 1.0.3:
-       - Fix bug menu in plugin not work
+       - Fix bug menu in plugin not 
 1.0.4:
        - Added ability to delete multiple records
