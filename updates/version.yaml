@@ -8,3 +8,6 @@
        - Fix bug menu in plugin not 
 1.0.4:
        - Added ability to delete multiple records
+1.0.5:
+       - Seed data for series
+       - seed_series_table.php
