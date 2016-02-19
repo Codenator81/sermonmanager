@@ -20,6 +20,6 @@ class Series extends Controller
     {
         parent::__construct();
 
-        BackendMenu::setContext('Sitesforchurch.SermonManager', 'sermonmanager', 'series');
+        BackendMenu::setContext('SitesForChurch.SermonManager', 'sermonmanager', 'series');
     }
 }

@@ -20,6 +20,6 @@ class Speakers extends Controller
     {
         parent::__construct();
 
-        BackendMenu::setContext('Sitesforchurch.SermonManager', 'sermonmanager', 'speakers');
+        BackendMenu::setContext('SitesForChurch.SermonManager', 'sermonmanager', 'speakers');
     }
 }
